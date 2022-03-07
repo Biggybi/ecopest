@@ -12,7 +12,7 @@ public class Ecosystem
 
 	public Ecosystem()
 	{
-		this.grid = new Grid(10, 20);
+		this.grid = new Grid(5, 10);
 		this.nb_rats = randNumPest();
 		this.nb_pigeons = randNumPest();
 		this.nb_zombies = randNumPest();
@@ -36,7 +36,6 @@ public class Ecosystem
 		int y;
 
 		y = n % (grid.getY() - 0);
-		System.out.println("y = " + y);
 		return y;
 	}
 	private int get_x_pos(int n)
@@ -44,7 +43,6 @@ public class Ecosystem
 		int x;
 
 		x = n / grid.getY();
-		System.out.println("x = " + x);
 		return x;
 	}
 
@@ -52,22 +50,20 @@ public class Ecosystem
 	{
 		Integer []tab = generate_rand_table();
 		for (int i = 0; i < grid.getSize(); i++)
-		{
-				System.out.print(tab[i]);
-			System.out.println();
-		}
+			System.out.print(tab[i] + " | ");
+		System.out.println();
 
 		int i = -1;
 		int n = -1;
 
-		System.out.println(tab);
-		while (++n < nb_rats)
+		// System.out.println(tab);
+		while (++n < nb_pigeons)
 			this.grid.map[get_x_pos(tab[++i])][get_y_pos(tab[i])] = 1;
 		n = -1;
-		while (++n < nb_pigeons)
+		while (++n < nb_rats)
 			this.grid.map[get_x_pos(tab[++i])][get_y_pos(tab[i])] = 2;
 		n = -1;
-		while (++n < nb_pests)
+		while (++n < nb_zombies)
 			this.grid.map[get_x_pos(tab[++i])][get_y_pos(tab[i])] = 3;
 	}
 
@@ -82,8 +78,8 @@ public class Ecosystem
 
 	@Override
 	public String toString() {
-		return "Ecosystem [nb_pigeons=" + nb_pigeons + ", nb_rats="
-			+ nb_rats + ", nb_zombies=" + nb_zombies + "]";
+		return "Ecosystem [nb_pests=" + nb_pests + ", nb_pigeons=" + nb_pigeons + ", nb_rats=" + nb_rats
+				+ ", nb_zombies=" + nb_zombies + "]";
 	}
 
 	public Grid getGrid() {
